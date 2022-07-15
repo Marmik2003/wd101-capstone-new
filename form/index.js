@@ -1,13 +1,19 @@
 let userEntries = [];
 
 window.onload = function() {
+  userEntries = localStorage.getItem("userEntries");
+  if (userEntries) {
+    userEntries = JSON.parse(userEntries);
+  } else {
+    userEntries = [];
+  }
   const today = (new Date()).toISOString().slice(0, 10).split('-')
   const year = today[0]
   const min_age = [year - 18, today[1], today[2]].join('-');
   const max_age = [year - 55, today[1], today[2]].join('-');
   const date_input = document.querySelector("#dob-field");
-  date_input.setAttribute("min", min_age);
-  date_input.setAttribute("max", max_age);
+  date_input.setAttribute("max", min_age);
+  date_input.setAttribute("min", max_age);
   date_input.setAttribute("value", min_age);
 
 }
@@ -29,6 +35,7 @@ const saveSurveyForm = (e) => {
   }
   userEntries.push(userDetails);
   localStorage.setItem("userEntries", JSON.stringify(userEntries));
+  displayUserEntries();
 }
 
 const displayUserEntries = () => {
