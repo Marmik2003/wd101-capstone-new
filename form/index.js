@@ -14,7 +14,6 @@ window.onload = function() {
   const date_input = document.querySelector("#dob-field");
   date_input.setAttribute("max", min_age);
   date_input.setAttribute("min", max_age);
-  date_input.setAttribute("value", min_age);
 
 }
 
@@ -36,6 +35,12 @@ const saveSurveyForm = (e) => {
   userEntries.push(userDetails);
   localStorage.setItem("userEntries", JSON.stringify(userEntries));
   displayUserEntries();
+
+  document.querySelector("#name").value = "";
+  document.querySelector("#email-address").value = "";
+  document.querySelector("#password-field").value = "";
+  document.querySelector("#dob-field").value = "";
+  document.querySelector("#terms-accept").checked = false;
 }
 
 const displayUserEntries = () => {
